@@ -1,0 +1,136 @@
+<div class="row mb-4" style="margin-bottom: 1.5rem !important">
+  <div class="col-md-12">
+    <h2 class="text-center" style="color: #333; font-weight: bold">
+      Explore All Blogs
+    </h2>
+    <p class="lead text-center" style="color: #555; font-size: 1.1rem">
+      Discover Interesting posts from All Over the Globe! 🌍
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <% if (blogs && blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+  <div class="col-md-4 mb-4" style="margin-bottom: 1.5rem !important">
+    <div
+      class="card blog-card h-100"
+      style="
+        border: 2px dashed #0c0b0b72;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+      "
+    >
+      <div
+        class="card-header"
+        style="
+          background-color: #bcccdb;
+          border-bottom: 1px solid #e0e0e0;
+          padding: 1rem;
+        "
+      >
+        <h5
+          class="mb-0"
+          style="
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 0 !important;
+          "
+        >
+          <%= blog.title %>
+        </h5>
+      </div>
+      <% if (blog.image && blog.image.path) { %>
+      <img
+        src="<%= blog.image.path %>"
+        class="card-img-top"
+        alt="<%= blog.title %>"
+        style="
+          height: 180px;
+          object-fit: cover;
+          border-bottom: 1px solid #e0e0e0;
+        "
+      />
+      <% } %>
+      <div class="card-body" style="padding: 1.2rem">
+        <p
+          class="card-text"
+          style="color: #555; line-height: 1.6; margin-bottom: 1rem"
+        >
+          <%= blog.summary %>
+        </p>
+        <div class="blog-tags mb-3" style="margin-bottom: 1rem !important">
+          <% if (blog.tags && blog.tags.length > 0) { %> <%
+          blog.tags.forEach(tag => { %>
+          <span
+            class="badge bg-info text-dark"
+            style="
+              background-color: #e31963 !important;
+              color: #212529 !important;
+              border-radius: 5px;
+              padding: 0.3rem 0.6rem;
+              font-size: 0.85rem;
+              margin-right: 0.5rem;
+            "
+          >
+            <%= tag %>
+          </span>
+          <% }) %> <% } %>
+        </div>
+        <p
+          class="text-muted mb-0"
+          style="color: #777; font-size: 0.85rem; margin-bottom: 0 !important"
+        >
+          <small>By: <%= blog.author.username %></small><br />
+          <small
+            >Posted on: <%= new Date(blog.createdAt).toLocaleDateString()
+            %></small
+          >
+        </p>
+      </div>
+      <div
+        class="card-footer bg-transparent"
+        style="background-color: transparent !important; padding: 1rem"
+      >
+        <a
+          href="/user/blog/<%= blog._id %>"
+          class="btn btn-sm btn-primary w-100"
+          style="
+            background-color: #4db9f3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: block;
+            width: 100% !important;
+            text-align: center;
+            transition: background-color 0.2s ease;
+          "
+          >Read Full Article</a
+        >
+      </div>
+    </div>
+  </div>
+  <% }) %> <% } else { %>
+  <div class="col-12">
+    <div
+      class="alert alert-info"
+      style="
+        background-color: #e3f2fd;
+        color: #262729;
+        border: 1px solid #bbdefb;
+        border-radius: 20px;
+        padding: 1rem;
+      "
+    >
+      <marquee behavior="" direction="left">
+        There are no published blog posts yet. Be the first to create
+        content!</marquee
+      >
+    </div>
+  </div>
+  <% } %>
+</div>

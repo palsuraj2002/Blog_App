@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Learnit.com</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      /* Global Styles */
+      html,
+      body {
+        height: 100%;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        background-color: #f4f6f8; /* Light gray background */
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333; /* Dark text */
+      }
+
+      main {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px; /* Add horizontal padding for smaller screens */
+      }
+
+      /* Navbar */
+      .navbar {
+        background: linear-gradient(
+          90deg,
+          #007bff,
+          #66a3ff
+        ); /* Vibrant blue gradient */
+        padding: 15px 0;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.8rem;
+        color: white !important;
+      }
+
+      .nav-link {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.8) !important;
+        margin-left: 15px;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link.active,
+      .nav-link:hover {
+        color: #ffe082 !important; /* Light yellow for active/hover */
+      }
+
+      .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .btn-outline-warning,
+      .btn-outline-success,
+      .btn-outline-primary {
+        color: white;
+        border-color: white;
+        margin-left: 10px;
+        transition: background-color 0.3s ease, color 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .btn-outline-warning:hover,
+      .btn-outline-success:hover,
+      .btn-outline-primary:hover {
+        background-color: white;
+        color: #007bff;
+        border-color: white;
+      }
+
+      /* Cards */
+      .card {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        margin-bottom: 25px;
+        border: 1px solid #e0e0e0;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-header {
+        background-color: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 15px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      /* Blog Specific Styles */
+      .blog-card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .blog-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .blog-summary {
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 15px;
+      }
+
+      .blog-tags .badge {
+        margin-right: 8px;
+        background-color: #28a745; /* Green for tags */
+        color: white;
+        border-radius: 5px;
+        padding: 6px 10px;
+        font-size: 0.9rem;
+      }
+
+      .blog-meta {
+        color: #777;
+        font-size: 0.9rem;
+        margin-top: 15px;
+      }
+
+      .blog-actions .btn {
+        margin-right: 5px;
+        font-size: 0.95rem;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #499bedc5;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .navbar-brand {
+          font-size: 1.5rem;
+        }
+        .nav-link {
+          margin-left: 0;
+          padding: 8px 15px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .navbar-nav {
+          background-color: rgba(0, 0, 0, 0.1);
+          padding: 10px;
+          border-radius: 5px;
+        }
+        .btn-outline-warning,
+        .btn-outline-success,
+        .btn-outline-primary {
+          margin-left: 0;
+          margin-top: 5px;
+        }
+        .blog-title {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/user/home">📑 Learnit.com</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+              <% if (user) { %>
+              <li class="nav-item">
+                <a class="nav-link active" href="/user/home">📁 Your Posts</a>
+              </li>
+              <% } %>
+              <li class="nav-item">
+                <a class="nav-link" href="/user/allBlogs">🔎 Explore Blogs</a>
+              </li>
+            </ul>
+            <div class="d-flex">
+              <% if (user) { %>
+              <form method="get" action="/user/logout" class="me-2">
+                <button class="btn btn-outline-warning" type="submit">
+                  👋 Logout
+                </button>
+              </form>
+              <% } else { %>
+              <form method="get" action="/user/login" class="me-2">
+                <button class="btn btn-outline-success" type="submit">
+                  🔐 Login
+                </button>
+              </form>
+              <form method="get" action="/user/register">
+                <button class="btn btn-outline-primary" type="submit">
+                  ✍🏻 Register
+                </button>
+              </form>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container py-4"><%- body %></main>
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 - Learnit.com | All Rights Reserverd.</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

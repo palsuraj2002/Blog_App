@@ -1,0 +1,387 @@
+<div class="row mb-4" style="margin-bottom: 2rem !important">
+  <div class="col-md-12">
+    <div
+      class="d-flex justify-content-between align-items-center"
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <h2 style="color: #333; font-weight: bold; margin-bottom: 0">
+        My Blogs
+      </h2>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#createBlogModal"
+        style="
+          background-color: #999999;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          padding: 0.7rem 1.2rem;
+          font-size: 1rem;
+          cursor: pointer;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        "
+      >
+        ➕ Add New Post
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <% if (blogs && blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+  <div class="col-md-6 mb-4">
+    <div class="card blog-card h-100">
+      <div
+        class="card-header d-flex justify-content-between align-items-center"
+      >
+        <h5 class="mb-0"><%= blog.title %></h5>
+        <span
+          class="badge <%= blog.published ? 'bg-success' : 'bg-secondary' %>"
+        >
+          <%= blog.published ? 'Published' : 'Draft' %>
+        </span>
+      </div>
+      <% if (blog.image && blog.image.url) { %>
+      <img
+        src="<%= blog.image.url %>"
+        class="card-img-top"
+        alt="<%= blog.title %>"
+        style="height: auto; object-fit: fill; object-position: center; "
+      />
+      <% } %>
+      <div class="card-body">
+        <p class="card-text"><%= blog.summary %></p>
+        <div class="blog-tags mb-3">
+          <% if (blog.tags && blog.tags.length > 0) { %> <%
+          blog.tags.forEach(tag => { %>
+          <span class="badge bg-info text-dark"> <%= tag %> </span>
+          <% }) %> <% } %>
+        </div>
+        <p class="text-muted">
+          <small
+            >Created: <%= new Date(blog.createdAt).toLocaleDateString()
+            %></small
+          >
+          <% if (blog.updatedAt && blog.updatedAt !== blog.createdAt) { %>
+          <br />
+          <small
+            >Updated: <%= new Date(blog.updatedAt).toLocaleDateString()
+            %></small
+          >
+          <% } %>
+        </p>
+      </div>
+      <div class="card-footer bg-transparent">
+        <div class="d-flex justify-content-between">
+          <a
+            href="/user/blog/<%= blog._id %>"
+            class="btn btn-sm btn-primary"
+            >Read More
+          </a>
+          <div>
+            <a
+              href="/user/blog/edit/<%= blog._id %>"
+              class="btn btn-sm btn-warning me-1"
+            >
+              ✏️ Edit</a
+            >
+            <% if (!blog.published) { %>
+            <form method="post" action="/user/update" class="d-inline">
+              <input type="hidden" name="id" value="<%= blog._id %>" />
+              <button type="submit" class="btn btn-sm btn-success me-1">
+                Publish
+              </button>
+            </form>
+            <% } %>
+            <form method="post" action="/user/delete" class="d-inline">
+              <input type="hidden" name="id" value="<%= blog._id %>" />
+              <button type="submit" class="btn btn-sm btn-danger">
+                🗑️ Delete
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %> <% } else { %>
+  <div class="col-12">
+    <div class="alert alert-info" style="
+        background-color: #e3f2fd;
+        color: #262729;
+        border: 1px solid #bbdefb;
+        border-radius: 20px;
+        padding: 1rem;
+      ">
+      <marquee behavior="" direction="left">
+        You haven't created any blog posts yet. Click the "New Blog Post" button
+        to get started!</marquee
+      >
+    </div>
+  </div>
+  <% } %>
+</div>
+
+<div
+  class="modal fade"
+  id="createBlogModal"
+  tabindex="-1"
+  aria-labelledby="createBlogModalLabel"
+  aria-hidden="true"
+  style="display: none"
+>
+  <div class="modal-dialog modal-lg" style="max-width: 800px">
+    <div
+      class="modal-content"
+      style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)"
+    >
+      <div
+        class="modal-header"
+        style="
+          background-color: #007bffc0;
+          color: white;
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid #0056b3;
+        "
+      >
+        <h5
+          class="modal-title"
+          id="createBlogModalLabel"
+          style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0"
+        >
+          Create New Post
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          style="
+            background: transparent
+              url('data:image/svg+xml,%3csvg viewBox=\'0 0 16 16\' fill=\'%23fff\' xmlns=\'http://www.w3.org/2000/svg\'%3e%3cpath fill-rule=\'evenodd\' d=\'M1.5 1.5a.5.5 0 0 1 .707 0L8 7.293l5.793-5.793a.5.5 0 1 1 .707.707L8.707 8l5.793 5.793a.5.5 0 0 1-.707.707L8 8.707l-5.793 5.793a.5.5 0 0 1-.707-.707L7.293 8 1.5 2.207a.5.5 0 0 1 0-.707z\'/%3e%3c/svg%3e')
+              center/1em auto no-repeat;
+            opacity: 0.8;
+          "
+        ></button>
+      </div>
+      <form method="post" action="/user/create">
+        <div class="modal-body" style="padding: 1.5rem">
+          <div class="mb-3" style="margin-bottom: 1.2rem !important">
+            <label
+              for="title"
+              class="form-label"
+              style="
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+                color: #555;
+              "
+              >Title</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              name="title"
+              required
+              style="
+                width: 100%;
+                padding: 0.7rem;
+                border: 1px solid #ced4da;
+                border-radius: 6px;
+                font-size: 1rem;
+              "
+            />
+          </div>
+          <div class="mb-3" style="margin-bottom: 1.2rem !important">
+            <label
+              for="summary"
+              class="form-label"
+              style="
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+                color: #555;
+              "
+              >Summary</label
+            >
+            <textarea
+              class="form-control"
+              id="summary"
+              name="summary"
+              rows="1"
+              required
+              style="
+                width: 100%;
+                padding: 0.7rem;
+                border: 1px solid #ced4da;
+                border-radius: 6px;
+                font-size: 1rem;
+              "
+            ></textarea>
+          </div>
+          <div class="mb-3" style="margin-bottom: 1.2rem !important">
+            <label
+              for="content"
+              class="form-label"
+              style="
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+                color: #555;
+              "
+              >Content</label
+            >
+            <textarea
+              class="form-control"
+              id="content"
+              name="content"
+              rows="2"
+              required
+              style="
+                width: 100%;
+                padding: 0.7rem;
+                border: 1px solid #ced4da;
+                border-radius: 6px;
+                font-size: 1rem;
+              "
+            ></textarea>
+          </div>
+          <div class="mb-3" style="margin-bottom: 1.2rem !important">
+            <label
+              for="imageUrl"
+              class="form-label"
+              style="
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+                color: #555;
+              "
+              >Featured Image URL</label
+            >
+            <input
+              type="url"
+              class="form-control"
+              id="imageUrl"
+              name="imageUrl"
+              placeholder="Enter image URL (e.g: https://example.com/image.jpg)"
+              style="
+                width: 100%;
+                padding: 0.7rem;
+                border: 1px solid #ced4da;
+                border-radius: 6px;
+                font-size: 1rem;
+              "
+            />
+            <div
+              class="form-text"
+              style="color: #777; font-size: 0.85rem; margin-top: 0.3rem"
+            ></div>
+          </div>
+          <div class="mb-3" style="margin-bottom: 1.2rem !important">
+            <label
+              for="tags"
+              class="form-label"
+              style="
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+                color: #555;
+              "
+              >Category Tags</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="tags"
+              name="tags"
+              placeholder="Tech, Programming, Others"
+              style="
+                width: 100%;
+                padding: 0.7rem;
+                border: 1px solid #ced4da;
+                border-radius: 6px;
+                font-size: 1rem;
+              "
+            />
+          </div>
+          <div class="form-check" style="margin-bottom: 1rem !important">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="published"
+              name="published"
+              checked
+              style="
+                border: 1px solid #007bff;
+                border-radius: 4px;
+                cursor: pointer;
+              "
+            />
+            <label
+              class="form-check-label"
+              for="published"
+              style="color: #555; font-weight: bold; margin-left: 0.5rem"
+            >
+              Publish Now!
+            </label>
+          </div>
+        </div>
+        <div
+          class="modal-footer"
+          style="
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: flex-end;
+          "
+        >
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            style="
+              background-color: #6c757d;
+              color: white;
+              border: none;
+              border-radius: 6px;
+              padding: 0.6rem 1rem;
+              font-size: 1rem;
+              cursor: pointer;
+              margin-right: 0.5rem;
+              transition: background-color 0.2s ease;
+            "
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="
+              background-color: #007bff;
+              color: white;
+              border: none;
+              border-radius: 6px;
+              padding: 0.6rem 1rem;
+              font-size: 1rem;
+              font-weight: bold;
+              cursor: pointer;
+              transition: background-color 0.2s ease;
+            "
+          >
+            Create
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  // You might want to remove the file input element if you are strictly taking URLs
+  const fileInput = document.getElementById("blogImage");
+  if (fileInput) {
+    fileInput.remove();
+  }
+</script>

@@ -1,0 +1,195 @@
+<div class="row mb-4" style="margin-bottom: 1.5rem !important">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol
+        class="breadcrumb"
+        style="
+          background-color: #f8f9fa;
+          padding: 0.8rem;
+          border-radius: 6px;
+          border: 1px dotted rgba(0, 0, 0, 0.729);
+        "
+      >
+        <li class="breadcrumb-item">
+          <a href="/user/allBlogs" style="color: #3b9aff; text-decoration: none"
+            >All Blogs</a
+          >
+        </li>
+        <li
+          class="breadcrumb-item active"
+          aria-current="page"
+          style="color: #7f888f"
+        >
+          Blog Details
+        </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="row">
+  <div
+    class="col-lg-8 mx-auto"
+    style="max-width: 400px; margin-left: auto; margin-right: auto"
+  >
+    <div
+      class="card mb-4"
+      style="
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        border: 1px dotted rgba(0, 0, 0, 0.729);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <div
+        class="card-header bg-light"
+        style="background-color: #f8f9fa !important; padding: 1.2rem"
+      >
+        <h2
+          class="mb-1"
+          style="
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 0.5rem !important;
+          "
+        >
+          <%= blog.title %>
+        </h2>
+        <div
+          class="d-flex justify-content-between align-items-center"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div>
+            <small class="text-muted" style="color: #6c757d !important"
+              >By: <%= blog.author.username %></small
+            ><br />
+            <small class="text-muted" style="color: #6c757d !important"
+              >Posted: <%= new Date(blog.createdAt).toLocaleDateString()
+              %></small
+            >
+            <% if (blog.updatedAt && blog.updatedAt !== blog.createdAt) { %>
+            <br /><small class="text-muted" style="color: #6c757d !important"
+              >Updated: <%= new Date(blog.updatedAt).toLocaleDateString()
+              %></small
+            >
+            <% } %>
+          </div>
+
+          <% if (user && blog.author._id.toString() === user._id.toString()) {
+          %>
+          <div>
+            <a
+              href="/user/blog/edit/<%= blog._id %>"
+              class="btn btn-sm btn-warning"
+              style="
+                background-color: #ffbf00;
+                color: #000000;
+                border: none;
+                border-radius: 6px;
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+                text-decoration: none;
+                transition: background-color 0.2s ease;
+              "
+              >Edit</a
+            >
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <% if (blog.image && blog.image.url) { %>
+      <img
+        src="<%= blog.image.url %>"
+        class="card-img-top"
+        alt="<%= blog.title %>"
+        style="max-height: 300px; object-fit: fill; object-position: center"
+      />
+      <% } %>
+
+      <div class="card-body" style="padding: 1.5rem">
+        <div class="blog-tags mb-4" style="margin-bottom: 1.5rem !important">
+          <% if (blog.tags && blog.tags.length > 0) { %> <%
+          blog.tags.forEach(tag => { %>
+          <span
+            class="badge bg-info text-dark"
+            style="
+              background-color: #17a2b8 !important;
+              color: #212529 !important;
+              border-radius: 5px;
+              padding: 0.4rem 0.7rem;
+              font-size: 0.85rem;
+              margin-right: 0.5rem;
+            "
+          >
+            <%= tag %>
+          </span>
+          <% }) %> <% } %>
+        </div>
+
+        <div class="blog-content" style="line-height: 1.7; color: #333">
+          <%= blog.content %>
+        </div>
+      </div>
+      <div
+        class="card-footer bg-light"
+        style="
+          background-color: #c7d2e0 !important;
+          padding: 1rem;
+          border-top: 1px solid #e0e0e0;
+        "
+      >
+        <% if (blog.author.bio) { %>
+        <div
+          class="d-flex align-items-center"
+          style="display: flex; align-items: center"
+        >
+          <div class="me-3" style="margin-right: 1rem !important">
+            <span
+              class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
+              style="
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                background-color: #0088ff !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <%= blog.author.username.charAt(0).toUpperCase() %>
+            </span>
+          </div>
+          <div>
+            <h6
+              class="mb-1"
+              style="
+                font-size: 1rem;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 0.3rem !important;
+              "
+            >
+              About The Author
+            </h6>
+            <p
+              class="mb-0 small"
+              style="
+                font-size: 0.85rem;
+                color: #555;
+                margin-bottom: 0 !important;
+              "
+            >
+              <%= blog.author.bio %>
+            </p>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

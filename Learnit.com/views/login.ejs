@@ -1,0 +1,135 @@
+<div
+  class="row justify-content-center"
+  style="margin-top: 30px; margin-bottom: 30px"
+>
+  <div class="col-md-6 col-lg-5" style="max-width: 500px; width: 100%">
+    <div
+      class="card shadow"
+      style="
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <div
+        class="card-header bg-primary text-white text-center py-3"
+        style="
+          background-color: #48daff !important;
+          color: rgba(40, 34, 34, 0.753) !important;
+          padding-top: 1.2rem !important;
+          padding-bottom: 1.2rem !important;
+        "
+      >
+        <h4
+          class="mb-0"
+          style="
+            margin-bottom: 0 !important;
+            font-size: 1.5rem;
+            font-weight: bold;
+          "
+        >
+          🪪 Login Yourself!
+        </h4>
+      </div>
+      <div class="card-body p-4" style="padding: 1.5rem !important">
+        <form method="post" action="/user/login">
+          <div class="mb-3" style="margin-bottom: 1.2rem !important">
+            <label
+              for="username"
+              class="form-label"
+              style="
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+                color: #555;
+              "
+              >Username</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              placeholder="Enter Your Username"
+              required
+              style="
+                width: 100%;
+                padding: 0.7rem;
+                border: 1px solid #ced4da;
+                border-radius: 6px;
+                font-size: 1rem;
+              "
+            />
+          </div>
+          <div class="mb-4" style="margin-bottom: 1.5rem !important">
+            <label
+              for="password"
+              class="form-label"
+              style="
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+                color: #555;
+              "
+              >Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Enter Your Password!"
+              required
+              style="
+                width: 100%;
+                padding: 0.7rem;
+                border: 1px solid #ced4da;
+                border-radius: 6px;
+                font-size: 1rem;
+              "
+            />
+          </div>
+          <div class="d-grid" style="display: grid; gap: 0.7rem">
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg"
+              style="
+                background-color: #48daff;
+                color: white;
+                padding: 0.8rem 1.2rem;
+                border: none;
+                border-radius: 6px;
+                font-size: 1.1rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+              "
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+      <div
+        class="card-footer text-center py-3"
+        style="
+          background-color: #f8f9fa;
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+          border-top: 1px solid #e0e0e0;
+        "
+      >
+        <p
+          class="mb-0"
+          style="margin-bottom: 0 !important; font-size: 0.95rem; color: #777"
+        >
+          Don't have an account?
+          <a href="/user/register" style="color: #000000; font-weight: bold"
+            >Register here</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

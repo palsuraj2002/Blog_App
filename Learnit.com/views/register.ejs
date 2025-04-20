@@ -1,0 +1,146 @@
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div
+      class="card shadow"
+      style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden"
+    >
+      <div
+        class="card-header bg-primary text-white text-center py-3"
+        style="
+          background-color: #e7c644da !important;
+          color: rgb(240, 10, 10) !important;
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+        "
+      >
+        <h4 class="mb-0" style="margin-bottom: 0 !important; font-size: 1.5rem">
+          ✍🏻Register Yourself!
+        </h4>
+      </div>
+      <div class="card-body p-4" style="padding: 1.5rem !important">
+        <form method="post" action="/user/register">
+          <div class="mb-3" style="margin-bottom: 1rem !important">
+            <label
+              for="username"
+              class="form-label"
+              style="display: block; margin-bottom: 0.5rem"
+              >Username</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              required
+              placeholder="Enter Your Username"
+              style="
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+              "
+            />
+          </div>
+          <div class="mb-3" style="margin-bottom: 1rem !important">
+            <label
+              for="email"
+              class="form-label"
+              style="display: block; margin-bottom: 0.5rem"
+              >Email</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Example@domain.com"
+              required
+              style="
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+              "
+            />
+          </div>
+          <div class="mb-3" style="margin-bottom: 1rem !important">
+            <label
+              for="bio"
+              class="form-label"
+              style="display: block; margin-bottom: 0.5rem"
+              >Bio (optional)</label
+            >
+            <textarea
+              class="form-control"
+              id="bio"
+              name="bio"
+              rows="3"
+              placeholder="Tell us a bit about yourself..."
+              style="
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+              "
+            ></textarea>
+          </div>
+          <div class="mb-4" style="margin-bottom: 1.5rem !important">
+            <label
+              for="password"
+              class="form-label"
+              style="display: block; margin-bottom: 0.5rem"
+              >Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Enter Your Password!"
+              required
+              style="
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+              "
+            />
+          </div>
+          <div class="d-grid" style="display: grid; gap: 0.5rem">
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg"
+              style="
+                background-color: #ef8923;
+                color: white;
+                padding: 0.75rem 1.5rem;
+                border: none;
+                border-radius: 4px;
+                font-size: 1.2rem;
+                cursor: pointer;
+              "
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+      <div
+        class="card-footer text-center py-3"
+        style="
+          background-color: #f8f9fa;
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+          border-top: 1px solid #ddd;
+        "
+      >
+        <p class="mb-0" style="margin-bottom: 0 !important; font-size: 0.9rem">
+          Already have an account?
+          <a href="/user/login" style="color: #000000; font-weight: bold"
+            >Login here</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
